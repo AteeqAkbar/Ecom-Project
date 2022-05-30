@@ -1,0 +1,83 @@
+<!-- Plugins JS File -->
+<script src="../../assets/js/jquery.min.js"></script>
+<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/jquery.hoverIntent.min.js"></script>
+<script src="../../assets/js/jquery.waypoints.min.js"></script>
+<script src="../../assets/js/superfish.min.js"></script>
+<script src="../../assets/js/owl.carousel.min.js"></script>
+<script src="../../assets/js/bootstrap-input-spinner.js"></script>
+<script src="../../assets/js/jquery.plugin.min.js"></script>
+<script src="../../assets/js/jquery.magnific-popup.min.js"></script>
+<script src="../../assets/js/jquery.elevateZoom.min.js"></script>
+
+<script src="../../assets/js/jquery.countdown.min.js"></script>
+<!-- Main JS File -->
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/demos/demo-6.js"></script>
+
+
+
+<!-- login script -->
+
+
+<script>
+    const frm = document.getElementById("login");
+    frm.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+        const email = frm.email.value;
+        const password = frm.password.value;
+        console.log(password);
+
+        console.log("with in from");
+        const res = await fetch("http://localhost:3200/user/signin", {
+            method: "post",
+            body: JSON.stringify({
+
+                email: email, pass: password
+            }),
+            headers: { "Content-Type": "application/json" }
+        })
+        const server = await res.json()
+        if (server.status) {
+            if (server.isAdmin === true) {
+                location.assign("http://localhost:3200/admin")
+            } else {
+                location.assign("http://localhost:3200")
+            }
+        } else {
+            alert(server.note)
+        }
+    })
+</script>
+
+
+
+<!-- signup script -->
+
+<script>
+    const frm1 = document.getElementById("signup");
+    frm1.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+        const email = frm1.email.value;
+        const password = frm1.password.value;
+        const name = frm1.name.value;
+        console.log(password);
+
+        console.log("with in from");
+        const res = await fetch("http://localhost:3200/user/signup", {
+            method: "post",
+            body: JSON.stringify({
+
+                name: name, email: email, pass: password
+            }),
+            headers: { "Content-Type": "application/json" }
+        })
+        const server = await res.json()
+        console.log(server.status)
+        if (server.status === true) {
+            location.assign("http://localhost:3200")
+        }
+    })
+</script>

@@ -1,0 +1,149 @@
+<%- include("../admin/header") %>
+
+	<!--end header -->
+	<!--start page wrapper -->
+	<div class="page-wrapper">
+		<div class="page-content">
+			<!--breadcrumb-->
+			<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+				<div class="breadcrumb-title pe-3">Forms</div>
+				<div class="ps-3">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb mb-0 p-0">
+							<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+							</li>
+							<li class="breadcrumb-item active" aria-current="page">Form Layouts</li>
+						</ol>
+					</nav>
+				</div>
+				<div class="ms-auto">
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary">Settings</button>
+						<button type="button"
+							class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
+							data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a class="dropdown-item"
+								href="javascript:;">Action</a>
+							<a class="dropdown-item" href="javascript:;">Another action</a>
+							<a class="dropdown-item" href="javascript:;">Something else here</a>
+							<div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated
+								link</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end breadcrumb-->
+			<div class="row">
+				<div class="col-xl-7 mx-auto">
+					<h6 class="mb-0 text-uppercase">Product</h6>
+					<hr />
+					<div class="card border-top border-0 border-4 border-primary">
+						<div class="card-body p-5">
+							<div class="card-title d-flex align-items-center">
+								<div><i class="bx bxs-user me-1 font-22 text-primary"></i>
+								</div>
+								<h5 class="mb-0 text-primary">Update Product</h5>
+							</div>
+							<hr>
+							<form class="row g-3" id="addpro">
+								<div class="col-md-6">
+									<label for="inputFirstName" class="form-label">Name</label>
+									<input type="text" class="form-control" id="inputFirstName" name="name"
+										value="<%=product.name%>">
+								</div>
+
+								<% category.forEach(function(cat) { %>
+									<% if(cat.id==product.cat_id){catname=cat.name} %>
+
+										<% }); %>
+
+											<div class="col-md-4">
+												<label for="inputState" class="form-label">Categories</label>
+												<select id="inputState" class="form-select" name="cat_id">
+
+
+													<option value="<%=product.cat_id%>" selected>
+														<%=catname%>
+													</option>
+													<% category.forEach(function(cat) { %>
+
+														<option value="<%=cat.id%>">
+															<%= cat.name %>
+														</option>
+														<% }); %>
+												</select>
+											</div>
+											<% if( product.pro_featured==true ){%>
+												<div class="col-12">
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" id="gridCheck"
+															name="pro_featured" checked>
+														<label class="form-check-label" for="gridCheck">Featured
+															Product</label>
+													</div>
+												</div>
+												<% }else{ %>
+
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" id="gridCheck"
+															name="pro_featured" check>
+														<label class="form-check-label" for="gridCheck">Featured
+															Product</label>
+													</div>
+						</div>
+						<% } %>
+							<div class="col-md-6">
+								<label for="inputLastName" class="form-label">Price</label>
+								<input type="number" class="form-control" id="inputLastName" name="price"
+									value=<%=product.price %> >
+							</div>
+
+
+							<div class="col-12">
+								<label for="inputAddress" class="form-label">Details</label>
+								<textarea class="form-control" id="inputAddress" rows="3"
+									name="des"><%= product.des %> </textarea>
+							</div>
+							<div class="col-12">
+								<label for="inputAddress" class="form-label">old Image</label>
+								<img src="../../../data/uploads/<%= product.image %> " alt="" srcset=""
+									style="height: 120px ;width:120px ">
+							</div>
+							<div class="col-md-6">
+								<label for="inputLastName" class="form-label">Image</label>
+								<input type="file" class="form-control" id="inputLastName" name="image">
+							</div>
+							<div class="col-12">
+								<button type="submit" class="btn btn-primary px-5">Update product</button>
+							</div>
+							</form>
+					</div>
+				</div>
+
+
+			</div>
+			<!--end row-->
+		</div>
+	</div>
+	<!--end page wrapper -->
+
+
+	<script>
+		const frm = document.getElementById("addpro");
+		frm.addEventListener("submit", async (e) => {
+
+			e.preventDefault();
+			const frmData = new FormData(frm)
+
+			console.log("with in from");
+			const res = await fetch("http://localhost:3200/admin/product/<%=product.id%>", {
+				method: "PATCH",
+				body: frmData
+			})
+
+			location.assign("http://localhost:3200/admin/product")
+
+		})
+	</script>
+	<%- include("../admin/footer") %>
