@@ -74,76 +74,77 @@
 														<% }); %>
 												</select>
 											</div>
-											<% if( product.pro_featured==true ){%>
-												<div class="col-12">
+											<div class="col-12">
+												<% if( product.pro_featured==true ){%>
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox" id="gridCheck"
 															name="pro_featured" checked>
 														<label class="form-check-label" for="gridCheck">Featured
 															Product</label>
 													</div>
+													<% }else{ %>
+
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox"
+																id="gridCheck" name="pro_featured" check>
+															<label class="form-check-label" for="gridCheck">Featured
+																Product</label>
+														</div>
+											</div>
+											<% } %>
+												<div class="col-md-6">
+													<label for="inputLastName" class="form-label">Price</label>
+													<input type="number" class="form-control" id="inputLastName"
+														name="price" value=<%=product.price %> >
 												</div>
-												<% }else{ %>
-
-													<div class="form-check">
-														<input class="form-check-input" type="checkbox" id="gridCheck"
-															name="pro_featured" check>
-														<label class="form-check-label" for="gridCheck">Featured
-															Product</label>
-													</div>
-						</div>
-						<% } %>
-							<div class="col-md-6">
-								<label for="inputLastName" class="form-label">Price</label>
-								<input type="number" class="form-control" id="inputLastName" name="price"
-									value=<%=product.price %> >
-							</div>
 
 
-							<div class="col-12">
-								<label for="inputAddress" class="form-label">Details</label>
-								<textarea class="form-control" id="inputAddress" rows="3"
-									name="des"><%= product.des %> </textarea>
-							</div>
-							<div class="col-12">
-								<label for="inputAddress" class="form-label">old Image</label>
-								<img src="../../../data/uploads/<%= product.image %> " alt="" srcset=""
-									style="height: 120px ;width:120px ">
-							</div>
-							<div class="col-md-6">
-								<label for="inputLastName" class="form-label">Image</label>
-								<input type="file" class="form-control" id="inputLastName" name="image">
-							</div>
-							<div class="col-12">
-								<button type="submit" class="btn btn-primary px-5">Update product</button>
-							</div>
+												<div class="col-12">
+													<label for="inputAddress" class="form-label">Details</label>
+													<textarea class="form-control" id="inputAddress" rows="3"
+														name="des"><%= product.des %> </textarea>
+												</div>
+												<div class="col-12">
+													<label for="inputAddress" class="form-label">old Image</label>
+													<img src="../../../data/uploads/<%= product.image %> " alt=""
+														srcset="" style="margin: 5px; width: 100px;">
+												</div>
+												<div class="col-md-6">
+													<label for="inputLastName" class="form-label">Image</label>
+													<input type="file" class="form-control" id="inputLastName"
+														name="image">
+												</div>
+												<div class="col-12">
+													<button type="submit" class="btn btn-primary px-5">Update
+														product</button>
+												</div>
 							</form>
+						</div>
 					</div>
+
+
 				</div>
-
-
+				<!--end row-->
 			</div>
-			<!--end row-->
 		</div>
-	</div>
-	<!--end page wrapper -->
+		<!--end page wrapper -->
 
 
-	<script>
-		const frm = document.getElementById("addpro");
-		frm.addEventListener("submit", async (e) => {
+		<script>
+			const frm = document.getElementById("addpro");
+			frm.addEventListener("submit", async (e) => {
 
-			e.preventDefault();
-			const frmData = new FormData(frm)
+				e.preventDefault();
+				const frmData = new FormData(frm)
 
-			console.log("with in from");
-			const res = await fetch("http://localhost:3200/admin/product/<%=product.id%>", {
-				method: "PATCH",
-				body: frmData
+				console.log("with in from");
+				const res = await fetch("http://localhost:3200/admin/product/<%=product.id%>", {
+					method: "PATCH",
+					body: frmData
+				})
+
+				location.assign("http://localhost:3200/admin/product")
+
 			})
-
-			location.assign("http://localhost:3200/admin/product")
-
-		})
-	</script>
-	<%- include("../admin/footer") %>
+		</script>
+		<%- include("../admin/footer") %>
