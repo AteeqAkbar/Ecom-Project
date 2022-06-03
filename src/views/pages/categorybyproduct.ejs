@@ -42,9 +42,9 @@
                                         <figure class="product-media">
                                             <span class="product-label label-sale">Sale</span>
                                             <a href="http://localhost:3200/product/<%=cat.id%>">
-                                                <img src="../../assets/images/demos/demo-6/products/product-5-1.jpg"
+                                                <img src="../../data/uploads/<%= cat.image %>"
                                                     alt="Product image" class="product-image">
-                                                <img src="../../assets/images/demos/demo-6/products/product-5-2.jpg"
+                                                <img src="../../data/uploads/<%= cat.image %>"
                                                     alt="Product image" class="product-image-hover">
                                             </a>
 
@@ -63,16 +63,14 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Clothing</a>
-                                            </div><!-- End .product-cat -->
-                                            <h3 class="product-title"><a href="product.html">
+                                            
+                                            <h3 class="product-title"><a href="http://localhost:3200/product/<%=cat.id%>">
                                                     <%= cat.name %>
                                                 </a></h3>
                                             <!-- End .product-title -->
                                             <div class="product-price">
-                                                <span class="new-price">Now $<%= cat.price %></span>
-                                                <span class="old-price">Was $6.99</span>
+                                                <span class="new-price">Now RS.<%= cat.price %></span>
+                                                <span class="old-price">Was RS.6.99</span>
                                             </div><!-- End .product-price -->
                                         </div><!-- End .product-body -->
                                     </div><!-- End .product -->

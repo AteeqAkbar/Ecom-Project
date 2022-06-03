@@ -48,9 +48,8 @@
                                     <div class="col-md-6">
                                         <div class="product-gallery">
                                             <figure class="product-main-image">
-                                                <img id="product-zoom"
-                                                    src="../assets/images/products/single/extended/3.jpg"
-                                                    data-zoom-image="../assets/images/products/single/extended/3-big.jpg"
+                                                <img id="product-image" style="width: 50%;"
+                                                    src="../../data/uploads/<%= product.image %>"
                                                     alt="product image">
 
                                                 <a href="#" id="btn-product-gallery" class="btn-product-gallery">
@@ -62,29 +61,32 @@
                                                 <a class="product-gallery-item" href="#"
                                                     data-image="../assets/images/products/single/extended/1.jpg"
                                                     data-zoom-image="../assets/images/products/single/extended/1-big.jpg">
-                                                    <img src="../assets/images/products/single/extended/1-small.jpg"
-                                                        alt="product side">
+                                                    <img style="height: 80%;width: 60%;" src="../../data/uploads/<%= product.image %> "
+                                                        alt="product cross">
+
                                                 </a>
 
                                                 <a class="product-gallery-item" href="#"
                                                     data-image="../assets/images/products/single/extended/2.jpg"
                                                     data-zoom-image="../assets/images/products/single/extended/2-big.jpg">
-                                                    <img src="../assets/images/products/single/extended/2-small.jpg"
+                                                    <img style="height: 80%;width: 60%;" src="../../data/uploads/<%= product.image %> "
                                                         alt="product cross">
                                                 </a>
 
                                                 <a class="product-gallery-item active" href="#"
                                                     data-image="../assets/images/products/single/extended/3.jpg"
                                                     data-zoom-image="../assets/images/products/single/extended/3-big.jpg">
-                                                    <img src="../assets/images/products/single/extended/3-small.jpg"
-                                                        alt="product with model">
+                                                    <img style="height: 80%;width: 60%;" src="../../data/uploads/<%= product.image %> "
+                                                    alt="product cross">
+
                                                 </a>
 
                                                 <a class="product-gallery-item" href="#"
                                                     data-image="../assets/images/products/single/extended/4.jpg"
                                                     data-zoom-image="../assets/images/products/single/extended/4-big.jpg">
-                                                    <img src="../assets/images/products/single/extended/4-small.jpg"
-                                                        alt="product back">
+                                                    <img style="height: 80%;width: 60%;" src="../../data/uploads/<%= product.image %> "
+                                                    alt="product cross">
+
                                                 </a>
 
                                             </div><!-- End .product-image-gallery -->
@@ -117,36 +119,6 @@
                                                 </p>
                                             </div><!-- End .product-content -->
 
-                                            <div class="details-filter-row details-row-size">
-                                                <label>Color:</label>
-
-                                                <div class="product-nav product-nav-dots">
-                                                    <a href="#" class="active" style="background: #eab656;"><span
-                                                            class="sr-only">Color name</span></a>
-                                                    <a href="#" style="background: #333333;"><span class="sr-only">Color
-                                                            name</span></a>
-                                                    <a href="#" style="background: #3a588b;"><span class="sr-only">Color
-                                                            name</span></a>
-                                                    <a href="#" style="background: #caab97;"><span class="sr-only">Color
-                                                            name</span></a>
-                                                </div><!-- End .product-nav -->
-                                            </div><!-- End .details-filter-row -->
-
-                                            <div class="details-filter-row details-row-size">
-                                                <label for="size">Size:</label>
-                                                <div class="select-custom">
-                                                    <select name="size" id="size" class="form-control">
-                                                        <option value="#" selected="selected">Select a size</option>
-                                                        <option value="s">Small</option>
-                                                        <option value="m">Medium</option>
-                                                        <option value="l">Large</option>
-                                                        <option value="xl">Extra Large</option>
-                                                    </select>
-                                                </div><!-- End .select-custom -->
-
-                                                <a href="#" class="size-guide"><i class="icon-th-list"></i>size
-                                                    guide</a>
-                                            </div><!-- End .details-filter-row -->
 
                                             <div class="details-filter-row details-row-size">
                                                 <label for="qty">Qty:</label>
