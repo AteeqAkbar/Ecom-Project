@@ -1,19 +1,20 @@
 const express = require("express");
-const orderController = require("../controllers/order.controller");
+const cartController = require("../controllers/cart.controller");
+const {login} = require("../middlewares/auth");
 
 const router = express.Router()
 
 
 
 router.route('/')
-    .get(orderController.allorder)
-    .post(orderController.addorder)
+    .get(login,cartController.getsingleCartwithcartitems)
+    .post(login,cartController.addCart)
 
 
 router.route('/:id')
-    .get(orderController.getsingleorder)
-    .patch(orderController.updateorder)
-    .delete(orderController.deleteorder)
+    .get(login,cartController.deleteCart)
+    .patch(login,cartController.updateCart)
+    // .delete(login,cartController.deleteCart)
 
 
 module.exports = router

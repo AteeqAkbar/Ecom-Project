@@ -13,84 +13,152 @@
     <div class="page-wrapper">
 
         <%- include('../partials/header'); %>
-
-            <main class="main">
-
-
-
-                <div class="mb-5"></div><!-- End .mb-5 -->
-
-
-
-                <div class="mb-5"></div><!-- End .mb-5 -->
-
-
-
-
-
-                <div class="mb-6"></div><!-- End .mb-5 -->
-
+        <main class="main">
+        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        		<div class="container">
+        			<h1 class="page-title">Shopping Cart<span>Shop</span></h1>
+        		</div><!-- End .container -->
+        	</div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
                 <div class="container">
-                    <h2 class="title text-center mb-4"><%= category.name %> </h2><!-- End .title text-center -->
-                    <div class="products">
-                        <div class="row justify-content-center">
-                            <% category.products.forEach(function(cat) { %>
-
-
-                                <div class="col-6 col-md-4 col-lg-3">
-                                    <div class="product product-7 text-center">
-                                        <figure class="product-media">
-                                            <span class="product-label label-sale">Sale</span>
-                                            <a href="http://localhost:3200/product/<%=cat.id%>">
-                                                <img src="../../data/uploads/<%= cat.image %>"
-                                                    alt="Product image" class="product-image">
-                                                <img src="../../data/uploads/<%= cat.image %>"
-                                                    alt="Product image" class="product-image-hover">
-                                            </a>
-
-                                            <div class="product-action-vertical">
-                                                <a href="#"
-                                                    class="btn-product-icon btn-wishlist btn-expandable"><span>add
-                                                        to
-                                                        wishlist</span></a>
-                                            </div><!-- End .product-action-vertical -->
-
-                                            <div class="product-action">
-                                                <a href="http://localhost:3200/product/<%=cat.id%>"
-                                                    class="btn-product btn-cart"><span>add to
-                                                        cart</span></a>
-                                            </div><!-- End .product-action -->
-                                        </figure><!-- End .product-media -->
-
-                                        <div class="product-body">
-                                            
-                                            <h3 class="product-title"><a href="http://localhost:3200/product/<%=cat.id%>">
-                                                    <%= cat.name %>
-                                                </a></h3>
-                                            <!-- End .product-title -->
-                                            <div class="product-price">
-                                                <span class="new-price">Now RS.<%= cat.price %></span>
-                                                <span class="old-price">Was RS.6.99</span>
-                                            </div><!-- End .product-price -->
-                                        </div><!-- End .product-body -->
-                                    </div><!-- End .product -->
-                                </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
-                                <% }); %>
-
-
-                        </div><!-- End .row -->
-                    </div><!-- End .products -->
-
-                    <div class="more-container text-center mt-2">
-                        <a href="#" class="btn btn-outline-dark-2 btn-more"><span>show more</span></a>
-                    </div><!-- End .more-container -->
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+                    </ol>
                 </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
 
+            <div class="page-content">
+            	<div class="cart">
+	                <div class="container">
+	                	<div class="row">
+	                		<div class="col-lg-9">
+	                			<table class="table table-cart table-mobile">
+									<thead>
+										<tr>
+											<th>Product</th>
+											<th>Price(RS)</th>
+											<th>Quantity</th>
+											<th>Total(RS)</th>
+											<th></th>
+										</tr>
+									</thead>
 
+									<tbody>
+                                       <div style="display: none;" ><% total=0 %></div> 
+                                         
+                                        <% Cart.cart_items.forEach(function(cat) { %>
+                                        <%total+= cat.price*cat.quantity %> 
+										<tr>
+											<td class="product-col">
+												<div class="product">
+													<figure class="product-media">
+														<a href="#">
+															<img src="../../data/uploads/<%= cat.product.image %> " alt="Product image">
+														</a>
+													</figure>
 
+													<h3 class="product-title">
+														<a href="#"><%= cat.product.name %> </a>
+													</h3><!-- End .product-title -->
+												</div><!-- End .product -->
+											</td>
+											<td class="price-col"><%= cat.price %> </td>
+											<td class="quantity-col">
+                                                <div class="cart-product-quantity">
+                                                    <input type="number" class="form-control" value=<%= cat.quantity %> min="1" max="10" step="1" data-decimals="0" required>
+                                                </div><!-- End .cart-product-quantity -->
+                                            </td>
+											<td class="total-col"><%= cat.price*cat.quantity %></td>
+											<td class="remove-col"><a href="http://localhost:3200/cart/<%= cat.id %> "><button class="btn-remove"><i class="icon-close"></i></button></a></td>
+										</tr>
+                                        <% }); %>
+									</tbody>
+								</table><!-- End .table table-wishlist -->
 
-            </main><!-- End .main -->
+	                			<div class="cart-bottom">
+			            			<div class="cart-discount">
+			            				<form action="#">
+			            					<div class="input-group">
+				        						<input type="text" class="form-control" required placeholder="coupon code">
+				        						<div class="input-group-append">
+													<button class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
+												</div><!-- .End .input-group-append -->
+			        						</div><!-- End .input-group -->
+			            				</form>
+			            			</div><!-- End .cart-discount -->
 
+			            			<a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="icon-refresh"></i></a>
+		            			</div><!-- End .cart-bottom -->
+	                		</div><!-- End .col-lg-9 -->
+	                		<aside class="col-lg-3">
+	                			<div class="summary summary-cart">
+	                				<h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+
+	                				<table class="table table-summary">
+	                					<tbody>
+	                						<tr class="summary-subtotal">
+	                							<td>Subtotal:</td>
+	                							<td> RS.<%= total %></td>
+	                						</tr><!-- End .summary-subtotal -->
+	                						<tr class="summary-shipping">
+	                							<td>Shipping:</td>
+	                							<td>&nbsp;</td>
+	                						</tr>
+
+	                						<tr class="summary-shipping-row">
+	                							<td>
+													<div class="custom-control custom-radio">
+														<input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
+														<label class="custom-control-label" for="free-shipping">Free Shipping</label>
+													</div><!-- End .custom-control -->
+	                							</td>
+	                							<td>RS.0.00</td>
+	                						</tr><!-- End .summary-shipping-row -->
+
+	                						<tr class="summary-shipping-row">
+	                							<td>
+	                								<div class="custom-control custom-radio">
+														<input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
+														<label class="custom-control-label" for="standart-shipping">Standart:</label>
+													</div><!-- End .custom-control -->
+	                							</td>
+	                							<td>RS.10.00</td>
+	                						</tr><!-- End .summary-shipping-row -->
+
+	                						<tr class="summary-shipping-row">
+	                							<td>
+	                								<div class="custom-control custom-radio">
+														<input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
+														<label class="custom-control-label" for="express-shipping">Express:</label>
+													</div><!-- End .custom-control -->
+	                							</td>
+	                							<td>RS.20.00</td>
+	                						</tr><!-- End .summary-shipping-row -->
+
+	                						<tr class="summary-shipping-estimate">
+	                							<td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
+	                							<td>&nbsp;</td>
+	                						</tr><!-- End .summary-shipping-estimate -->
+
+	                						<tr class="summary-total">
+	                							<td>Total:</td>
+	                							<td>RS.<%= total %></td>
+	                						</tr><!-- End .summary-total -->
+	                					</tbody>
+	                				</table><!-- End .table table-summary -->
+
+	                				<a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+	                			</div><!-- End .summary -->
+
+		            			<a href="http://localhost:3200/" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
+	                		</aside><!-- End .col-lg-3 -->
+	                	</div><!-- End .row -->
+	                </div><!-- End .container -->
+                </div><!-- End .cart -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
 
 
             <!-- footer start -->
@@ -289,6 +357,7 @@
 
         <!-- end login signup -->
 
+     
         <!-- Plugins JS File -->
 
 

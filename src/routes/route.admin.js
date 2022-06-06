@@ -1,7 +1,7 @@
 const express = require("express");
 const adminController = require("../controllers/admin.controller");
 const authController = require("../controllers/auth");
-const auth = require("../middlewares/auth");
+const {auth} = require("../middlewares/auth");
 const image = require("../middlewares/multer");
 
 

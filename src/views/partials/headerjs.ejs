@@ -7,7 +7,7 @@
 <script src="../../assets/js/owl.carousel.min.js"></script>
 <script src="../../assets/js/bootstrap-input-spinner.js"></script>
 <script src="../../assets/js/jquery.plugin.min.js"></script>
-<script src="../../assets/js/jquery.magnific-popup.min.js"></script>
+<!-- <script src="../../assets/js/jquery.magnific-popup.min.js"></script> -->
 <script src="../../assets/js/jquery.elevateZoom.min.js"></script>
 
 <script src="../../assets/js/jquery.countdown.min.js"></script>
@@ -78,6 +78,62 @@
         console.log(server.status)
         if (server.status === true) {
             location.assign("http://localhost:3200")
+        }
+    })
+</script>
+<script>
+    const frm3 = document.getElementById("cartform");
+    frm3.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+        const pro_id = frm3.pro_id.value;
+        const quantity = frm3.quantity.value;
+        const price = frm3.price.value;
+
+        console.log("with in from");
+        const res = await fetch("http://localhost:3200/cart", {
+            method: "post",
+            body: JSON.stringify({
+
+                pro_id,quantity,price
+            }),
+            headers: { "Content-Type": "application/json" }
+        })
+        const server = await res.json()
+        console.log(server);
+        if (server.cart_items) {
+         const placeholder =   document.querySelector("#cart-items")
+            let out='';
+        server.cart_items.forEach(element => {
+            
+            out+=`
+            <div class="product">
+                        <div class="product-cart-details">
+                            <h4 class="product-title">
+                                <a href="product.html">${element.product.name}</a>
+                            </h4>
+
+                            <span class="cart-product-info">
+                                <span class="cart-product-qty">${element.quantity}</span>
+                                x ${element.price}
+                            </span>
+                        </div><!-- End .product-cart-details -->
+
+                        <figure class="product-image-container">
+                            <a href="product.html" class="product-image">
+                                <img src="../../data/uploads/${element.product.image}" alt="product">
+                            </a>
+                        </figure>
+                        <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
+                    </div><!-- End .product -->
+
+            `
+                
+            });
+            placeholder.innerHTML=out
+        } else {
+            // alert(server.note)
+            document.getElementById("cart-login").innerHTML =  server.note
         }
     })
 </script>

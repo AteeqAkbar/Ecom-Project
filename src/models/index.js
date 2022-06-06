@@ -38,7 +38,12 @@ db.Order_detail.belongsTo(db.Order, { foreignKey: 'ord_id' })
 
 db.Cart.hasMany(db.Cartitem, { foreignKey: 'cart_id' })
 db.Cartitem.belongsTo(db.Cart, { foreignKey: 'cart_id' })
-// // ///////
+
+// // ///////ateeq add this 
+
+
+db.Product.hasMany(db.Cartitem,{ foreignKey: 'pro_id' })
+db.Cartitem.belongsTo(db.Product,{ foreignKey: 'pro_id' })
 
 // // db.Product.hasMany(db.Order_detail, { foreignKey: 'product_id' })
 

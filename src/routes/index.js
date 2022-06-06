@@ -7,6 +7,8 @@ const categoryRoute = require("./route.category")
 const orderRoute = require("./route.order")
 const homeRoute = require("./route.home")
 const orderdetailRoute = require("./route.orderdetail")
+const cartRoute = require("./route.cart")
+const cartitemRoute = require("./route.cartitem")
 const router = express.Router()
 const routes = [
     {
@@ -40,6 +42,14 @@ const routes = [
     {
         path: "/orderdetail",
         route: orderdetailRoute
+    },
+    {
+        path: "/cart",
+        route: cartRoute
+    },
+    {
+        path: "/cartitem",
+        route: cartitemRoute
     },
 ]
 
