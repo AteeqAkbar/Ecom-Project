@@ -1,5 +1,6 @@
 const express = require("express");
 const orderController = require("../controllers/order.controller");
+const {login} = require("../middlewares/auth");
 
 const router = express.Router()
 
@@ -7,7 +8,7 @@ const router = express.Router()
 
 router.route('/')
     .get(orderController.allorder)
-    .post(orderController.addorder)
+    .post(login,orderController.addorder)
 
 
 router.route('/:id')

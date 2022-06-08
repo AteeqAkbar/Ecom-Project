@@ -3,19 +3,30 @@ const db = require("../models");
 
 // show all Cart
 
-const allCart = async (req, res) => {
+const checkout = async (req, res) => {
     try {
 
-        const Cart = await db.Cart.findAll();
-        if (Cart === null) {
-            console.log('Not found!');
-        }
-        else {
+        const user_id=res.locals.id
+        const checkout = await db.Cart.findOne( {
+            include:[
+                {
+                    model:db.Cartitem,
+                    include: [db.Product    ]
 
-            console.log(Cart);
-            res.send(Cart)
+                },
+            {
+                    model:db.User,
 
-        }
+                }
+            ],
+
+            where: {
+                user_id
+            }
+        });
+        console.log(checkout);
+        // res.send(checkout)
+        res.render("pages/checkout",{checkout})
     } catch (error) {
         res.send(error)
     }
@@ -177,4 +188,4 @@ const deleteCart = async (req, res) => {
 
 
 
-module.exports = { allCart, addCart, getsingleCartwithcartitems, updateCart, deleteCart }
+module.exports = { checkout, addCart, getsingleCartwithcartitems, updateCart, deleteCart }

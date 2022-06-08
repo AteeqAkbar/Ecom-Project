@@ -67,9 +67,15 @@
 											<td class="price-col"><%= cat.price %> </td>
 											<td class="quantity-col">
                                                 <div class="cart-product-quantity">
-                                                    <input type="number" class="form-control" value=<%= cat.quantity %> min="1" max="10" step="1" data-decimals="0" required>
+                                                <form id="update">
+                                                    <input type="number" class="form-control" name="quantity" id = "quantity<%= cat.id %>" value=<%= cat.quantity %> min="1" max="10" step="1" data-decimals="0" required>
                                                 </div><!-- End .cart-product-quantity -->
                                             </td>
+                                            <td>
+                                            <button  id="updated" onclick="update('<%=cat.id%>')" type="submit" class="icon-refresh"></button>
+                                                
+                                            </td>
+                                        </form>
 											<td class="total-col"><%= cat.price*cat.quantity %></td>
 											<td class="remove-col"><a href="http://localhost:3200/cart/<%= cat.id %> "><button class="btn-remove"><i class="icon-close"></i></button></a></td>
 										</tr>
@@ -359,6 +365,26 @@
 
      
         <!-- Plugins JS File -->
+
+        <script>
+        
+        async function update(id){
+            const frm4 = document.getElementById(`quantity${id}`).value;
+            console.log(frm4)
+            const res = await fetch('http://localhost:3200/cart/'+id, {
+            method: "PATCH",
+            body: JSON.stringify({
+                quantity : frm4
+                
+            }),
+            headers: { "Content-Type": "application/json" }
+        })
+        console.log("I'm out of the updated form........................")
+        }
+
+  
+            
+        </script>
 
 
         <%- include('../partials/headerjs'); %>

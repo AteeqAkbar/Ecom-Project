@@ -11,6 +11,10 @@ module.exports = (conn, DataTypes) => {
             type: DataTypes.INTEGER,
 
         },
+        phone: {
+            type: DataTypes.INTEGER,
+
+        },
         order_date: {
             type: DataTypes.STRING
             , timestamps: true,

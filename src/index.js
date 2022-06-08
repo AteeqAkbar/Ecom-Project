@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use('/', routes)
 app.get('/home', function (req, res) {
-    res.render('pages/cart');
+    res.render('pages/checkout');
 });
 
 app.listen(config.APP.PORT, console.log("server is  runing:", config.APP.PORT))
