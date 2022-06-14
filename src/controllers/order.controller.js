@@ -40,7 +40,7 @@ const addorder = async (req, res) => {
             order_amount,
             phone
         });
-        console.log(addorder.ord_id,"bjhvhjkj");
+        console.log(addorder.ord_id,"this is order id");
         const Orderdetail = await db.Cart.findOne( {
             include:[
                 {
@@ -63,8 +63,16 @@ const addorder = async (req, res) => {
           order_price:element.price*element.quantity
       });
       });
+      
 
-
+      const Cartitem = await db.Cartitem.destroy({
+        where: {
+        cart_id: Orderdetail.id
+        }})
+      const Cart = await db.Cart.destroy({
+        where: {
+        id: Orderdetail.id
+        }})
 
         // console.log(addorderdetail);
         res.send({status:true})

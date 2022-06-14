@@ -77,6 +77,22 @@ router.route('/category/:id')
 router.route('/category/:id/update')
     .get(adminController.updatesinglecat)
 
+////////////////////////////////<======admin/Orders=============>////////////////
+
+router.route('/order')
+    .get(adminController.allOrderwithproduct)
+//     .post(adminController.addcategory)
+
+
+
+// router.route('/user')
+//     .get(adminController.allCategory)
+
+// router.route('/user/:id')
+//     .get(adminController.getsinglecategory)
+//     .patch(adminController.updatecategory)
+//     .delete(adminController.deletecategory)
+
 ////////////////////////////////<======admin/user=============>////////////////
 
 router.route('/user/add')

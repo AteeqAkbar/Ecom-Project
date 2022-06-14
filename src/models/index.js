@@ -27,7 +27,7 @@ db.Category = require("./model.category")(conn, DataTypes)
 db.Category.hasMany(db.Product, { foreignKey: 'cat_id' })
 db.Product.belongsTo(db.Category, { foreignKey: 'cat_id' })
 
-// // //////
+// // //////=====================order=======================================
 db.User.hasMany(db.Order, { foreignKey: 'user_id' })
 db.Order.belongsTo(db.User, { foreignKey: 'user_id' })
 
@@ -36,8 +36,15 @@ db.Order.hasMany(db.Order_detail, { foreignKey: 'ord_id' })
 db.Order_detail.belongsTo(db.Order, { foreignKey: 'ord_id' })
 
 
+db.Product.hasMany(db.Order_detail,{ foreignKey: 'product_id' })
+db.Order_detail.belongsTo(db.Product,{ foreignKey: 'product_id' })
+
+///////////////////====================================================================
+
 db.Cart.hasMany(db.Cartitem, { foreignKey: 'cart_id' })
 db.Cartitem.belongsTo(db.Cart, { foreignKey: 'cart_id' })
+
+
 // =========================user has one cart ===============================
 
 db.User.hasOne(db.Cart, { foreignKey: 'user_id' })

@@ -43,7 +43,10 @@
             if (server.isAdmin === true) {
                 location.assign("http://localhost:3200/admin")
             } else {
-                location.assign("http://localhost:3200")
+                
+                // document.referrer;
+
+                location.assign(document.referrer)
             }
         } else {
             alert(server.note)

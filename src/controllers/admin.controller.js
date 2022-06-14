@@ -393,6 +393,44 @@ const allCategorywithallproduct = async (req, res) => {
         res.send(error)
     }
 }
+/////////////======================order=============================
+
+const allOrderwithproduct = async (req, res) => {
+    try {
+
+        const order = await db.Order_detail.findAll(
+            {
+                include:[
+                    {
+                        model:db.Product,
+                        // include: [db.Product    ]
+    
+                    },
+                    {
+                        model:db.Order,
+                        include: [db.User    ]
+                        
+    
+                    },
+                ],
+    
+            }
+        );
+        if (order === null) {
+            console.log('Not found!');
+        }
+        else {
+
+            // console.log(order);
+            // res.send(order)
+        res.render('admin/viewsorders',{order})
+
+        }
+    } catch (error) {
+        res.send(error)
+    }
+}
+
 
 
 module.exports = {
@@ -412,6 +450,7 @@ module.exports = {
     updatecategory,
     deletecategory,
     getcategorybyproduct,
-    allCategorywithallproduct
+    allCategorywithallproduct,
+    allOrderwithproduct
 
 }

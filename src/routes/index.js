@@ -8,7 +8,6 @@ const orderRoute = require("./route.order")
 const homeRoute = require("./route.home")
 const orderdetailRoute = require("./route.orderdetail")
 const cartRoute = require("./route.cart")
-const cartitemRoute = require("./route.cartitem")
 const checkoutRoute = require("./route.checkout")
 const router = express.Router()
 const routes = [
@@ -52,10 +51,7 @@ const routes = [
         path: "/checkout",
         route: checkoutRoute
     },
-    {
-        path: "/cartitem",
-        route: cartitemRoute
-    },
+    
 ]
 
 routes.forEach(rote => {
